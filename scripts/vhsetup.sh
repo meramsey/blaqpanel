@@ -416,21 +416,21 @@ EOF
 docRoot                   \$VH_ROOT
 vhDomain                  \$VH_DOMAIN
 vhAliases                 www.$VH_DOMAIN
-adminEmails               localhost
+adminEmails               admin@$VH_NAME
 enableGzip                1
 
-errorlog $SERVER_ROOT/logs/$VH_NAME.error_log {
+errorlog $VH_ROOT/logs/$VH_NAME.error_log {
 useServer               0
 logLevel                ERROR
 rollingSize             10M
 }
 
-accesslog $SERVER_ROOT/logs/$VH_NAME.access_log {
+accesslog $VH_ROOT/logs/$VH_NAME.access_log {
 useServer               0
-logFormat               "%v %h %l %u %t "%r" %>s %b"
+logFormat               "%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i""
 logHeaders              5
 rollingSize             10M
-keepDays                10
+keepDays                10  compressArchive
 }
 
 index  {
@@ -447,7 +447,7 @@ type                    lsapi
 address                 uds://tmp/lshttpd/${MY_DOMAIN}.sock
 maxConns                35
 env                     PHP_LSAPI_CHILDREN=35
-initTimeout             60
+initTimeout             600
 retryTimeout            0
 persistConn             1
 respBuffer              0
@@ -471,9 +471,17 @@ autoLoadHtaccess        1
 }
 
 vhssl  {
-keyFile                 ${LSDIR}/conf/example.key
-certFile                ${LSDIR}/conf/example.crt
+keyFile                 /etc/letsencrypt/live/$VH_NAME/privkey.pem
+certFile                /etc/letsencrypt/live/$VH_NAME/fullchain.pem
 certChain               1
+sslProtocol             24
+ciphers                 EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH:ECDHE-RSA-AES128-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA128:DHE-RSA-AES128-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES128-GCM-SHA128:ECDHE-RSA-AES128-SHA384:ECDHE-RSA-AES128-SHA128:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES128-SHA128:DHE-RSA-AES128-SHA128:DHE-RSA-AES128-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA384:AES128-GCM-SHA128:AES128-SHA128:AES128-SHA128:AES128-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4
+enableECDHE             1
+renegProtection         1
+sslSessionCache         1
+enableSpdy              15
+enableStapling           1
+ocspRespMaxAge           86400
 }
 EOF
         chown -R lsadm:lsadm ${VHDIR}/*

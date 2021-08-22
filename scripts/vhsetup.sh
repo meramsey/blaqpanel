@@ -416,7 +416,7 @@ EOF
 docRoot                   \$VH_ROOT
 vhDomain                  \$VH_DOMAIN
 vhAliases                 www.$VH_DOMAIN
-adminEmails               admin@$VH_NAME
+adminEmails               root@localhost
 enableGzip                1
 
 errorlog $VH_ROOT/logs/$VH_NAME.error_log {

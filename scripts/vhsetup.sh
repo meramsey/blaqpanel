@@ -415,17 +415,17 @@ EOF
         cat > ${VHDIR}/${MY_DOMAIN}/vhconf.conf << EOF
 docRoot                   \$VH_ROOT
 vhDomain                  \$VH_DOMAIN
-vhAliases                 www.$VH_DOMAIN
-adminEmails               root@localhost
+vhAliases                 www.\$VH_DOMAIN
+adminEmails               admin@\$VH_DOMAIN
 enableGzip                1
 
-errorlog $VH_ROOT/logs/$VH_NAME.error_log {
+errorlog \$VH_ROOT/logs/\$VH_NAME.error_log {
 useServer               0
 logLevel                ERROR
 rollingSize             10M
 }
 
-accesslog $VH_ROOT/logs/$VH_NAME.access_log {
+accesslog \$VH_ROOT/logs/\$VH_NAME.access_log {
 useServer               0
 logFormat               "%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i""
 logHeaders              5
@@ -471,8 +471,8 @@ autoLoadHtaccess        1
 }
 
 vhssl  {
-keyFile                 /etc/letsencrypt/live/$VH_NAME/privkey.pem
-certFile                /etc/letsencrypt/live/$VH_NAME/fullchain.pem
+keyFile                 /etc/letsencrypt/live/\$VH_NAME/privkey.pem
+certFile                /etc/letsencrypt/live/\$VH_NAME/fullchain.pem
 certChain               1
 sslProtocol             24
 ciphers                 EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH:ECDHE-RSA-AES128-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA128:DHE-RSA-AES128-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES128-GCM-SHA128:ECDHE-RSA-AES128-SHA384:ECDHE-RSA-AES128-SHA128:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES128-SHA128:DHE-RSA-AES128-SHA128:DHE-RSA-AES128-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA384:AES128-GCM-SHA128:AES128-SHA128:AES128-SHA128:AES128-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4

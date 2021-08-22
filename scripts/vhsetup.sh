@@ -430,7 +430,7 @@ useServer               0
 logFormat               "%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i""
 logHeaders              5
 rollingSize             10M
-keepDays                10  compressArchive
+keepDays                10
 }
 
 index  {

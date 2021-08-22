@@ -507,7 +507,7 @@ set_server_conf() {
     fi
     echo "
 virtualhost ${TEMP_DOMAIN} {
-vhRoot                  ${WWW_PATH}/${MY_DOMAIN}
+vhRoot                  ${WWW_PATH}/${MY_DOMAIN}/html
 configFile              ${VHDIR}/${MY_DOMAIN}/vhconf.conf
 allowSymbolLink         1
 enableScript            1
@@ -522,7 +522,7 @@ update_vh_conf(){
 }
 main_set_vh(){
     create_folder ${WWW_PATH}
-    DOCHM="${WWW_PATH}/${1}"
+    DOCHM="${WWW_PATH}/${1}/html"
     if [ ${DOMAIN_SKIP} = 'OFF' ]; then
         set_vh_conf
         set_server_conf

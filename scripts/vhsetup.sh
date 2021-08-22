@@ -148,7 +148,7 @@ create_file(){
 }
 create_folder(){
     if [ ! -d "${1}" ]; then
-        mkdir ${1}
+        mkdir -p ${1}
     fi
 }
 change_owner() {
@@ -413,7 +413,7 @@ EOF
     fi
     if [ ! -f "${VHDIR}/${MY_DOMAIN}/vhconf.conf" ]; then
         cat > ${VHDIR}/${MY_DOMAIN}/vhconf.conf << EOF
-docRoot                   \$VH_ROOT
+docRoot                   \$VH_ROOT/html
 vhDomain                  \$VH_DOMAIN
 vhAliases                 www.\$VH_DOMAIN
 adminEmails               admin@\$VH_DOMAIN
@@ -507,7 +507,7 @@ set_server_conf() {
     fi
     echo "
 virtualhost ${TEMP_DOMAIN} {
-vhRoot                  ${WWW_PATH}/${MY_DOMAIN}/html
+vhRoot                  ${WWW_PATH}/${MY_DOMAIN}
 configFile              ${VHDIR}/${MY_DOMAIN}/vhconf.conf
 allowSymbolLink         1
 enableScript            1

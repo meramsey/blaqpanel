@@ -73,13 +73,13 @@ show_help() {
         exit 0
     ;;    
     "2")
-        echoY "If you need to install cert manually later, please check:" 
-        echoB "https://docs.litespeedtech.com/shared/cloud/OPT-LETSHTTPS/"
+        echo "If you need to install cert manually later, please check:" 
+        echo "https://docs.litespeedtech.com/shared/cloud/OPT-LETSHTTPS/"
         echo ''
     ;;  
     "3")
         echo "Please make sure you have ${HM_PATH}/.db_password file with content:"
-        echoY 'root_mysql_pass="YOUR_DB_PASSWORD"'
+        echo 'root_mysql_pass="YOUR_DB_PASSWORD"'
     ;;  
     esac
 }
@@ -122,7 +122,7 @@ check_home_path()
 }
 check_root(){
     if [ $(id -u) -ne 0 ]; then
-        echoR "Please run this script as root user or use sudo"
+        echo "Please run this script as root user or use sudo"
         exit 2
     fi
 }
@@ -131,9 +131,9 @@ check_process(){
 }
 install_ed() {
     if [ -f /bin/ed ]; then
-        echoG "ed exist"
+        echo "ed exist"
     else
-        echoG "no ed, ready to install"
+        echo "no ed, ready to install"
         if [ "${OSNAME}" = 'ubuntu' ] || [ "${OSNAME}" = 'debian' ]; then
             apt-get install ed -y >/dev/null 2>&1
         elif [ "${OSNAME}" = 'centos' ]; then
@@ -172,7 +172,7 @@ install_wp_cli() {
         if [ -e ${LSDIR}/${PHPVER}/bin/php ]; then
             ln -s ${LSDIR}/${PHPVER}/bin/php /usr/bin/php
         else
-            echoR "${LSDIR}/${PHPVER}/bin/php not exist, please check your PHP version!"
+            echo "${LSDIR}/${PHPVER}/bin/php not exist, please check your PHP version!"
             exit 1 
         fi        
     fi      
@@ -234,12 +234,12 @@ get_theme_name(){
 
 install_wp_plugin(){
     for PLUGIN in ${PLUGINLIST}; do
-        echoG "Install ${PLUGIN}"
+        echo "Install ${PLUGIN}"
         wget -q -P ${DOCHM}/wp-content/plugins/ https://downloads.wordpress.org/plugin/${PLUGIN}
         if [ ${?} = 0 ]; then
             unzip -qq -o ${DOCHM}/wp-content/plugins/${PLUGIN} -d ${DOCHM}/wp-content/plugins/
         else
-            echoR "${PLUGINLIST} FAILED to download"
+            echo "${PLUGINLIST} FAILED to download"
         fi
     done
     rm -f ${DOCHM}/wp-content/plugins/*.zip
@@ -273,11 +273,11 @@ create_db_user(){
             mysql -uroot -p${ROOT_PASS} -e "GRANT ALL PRIVILEGES ON * . * TO '${WP_USER}'@'localhost';"
             mysql -uroot -p${ROOT_PASS} -e "FLUSH PRIVILEGES;"
         else
-            echoR "something went wrong when create new database, please proceed to manual installtion."
+            echo "something went wrong when create new database, please proceed to manual installtion."
             DB_TEST=1
         fi
     else
-        echoR "No DataBase Password, skip!"  
+        echo "No DataBase Password, skip!"  
         DB_TEST=1
         show_help 3
     fi    
@@ -295,7 +295,7 @@ install_wp() {
         get_theme_name
         config_wp
         change_owner
-        echoG "WP downloaded, please access your domain to complete the setup."    
+        echo "WP downloaded, please access your domain to complete the setup."    
     fi
 }
 
@@ -316,11 +316,11 @@ EOM
 }
 
 config_wp() {
-    echoG 'Setting WordPress'
+    echo 'Setting WordPress'
     install_wp_plugin
     set_wp_htaccess
     set_lscache
-    echoG 'Finish WordPress'
+    echo 'Finish WordPress'
 }
 
 check_install_wp() { 
@@ -330,10 +330,10 @@ check_install_wp() {
             if [ ! -f ${DOCHM}/wp-config.php ]; then
                 install_wp
             else
-                echoR 'WordPress existed, skip!'    
+                echo 'WordPress existed, skip!'    
             fi    
         else
-            echoR 'No MySQL environment, skip!'
+            echo 'No MySQL environment, skip!'
         fi                
     fi
 }
@@ -352,7 +352,7 @@ install_cp() {
         get_theme_name
         config_cp
         change_owner
-        echoG "ClassicPress downloaded, please access your domain to complete the setup." 
+        echo "ClassicPress downloaded, please access your domain to complete the setup." 
     fi    
 }
 
@@ -373,11 +373,11 @@ EOM
 }
 
 config_cp() {
-    echoG 'Setting ClassicPress'
+    echo 'Setting ClassicPress'
     install_wp_plugin
     set_cp_htaccess
     set_lscache
-    echoG 'Finish ClassicPress'
+    echo 'Finish ClassicPress'
 }
 
 check_install_cp() {
@@ -387,10 +387,10 @@ check_install_cp() {
             if [ ! -f ${DOCHM}/wp-config.php ]; then
                 install_cp
             else
-                echoR "ClassicPress already exists at ${DOCHM}. Skip!"   
+                echo "ClassicPress already exists at ${DOCHM}. Skip!"   
             fi    
         else
-            echoR 'No MySQL environment, skip!'
+            echo 'No MySQL environment, skip!'
         fi                
     fi
 }
@@ -471,8 +471,8 @@ autoLoadHtaccess        1
 }
 
 vhssl  {
-keyFile                 /etc/letsencrypt/live/\$VH_NAME/privkey.pem
-certFile                /etc/letsencrypt/live/\$VH_NAME/fullchain.pem
+keyFile                 ${LSDIR}/conf/example.key
+certFile                ${LSDIR}/conf/example.crt
 certChain               1
 sslProtocol             24
 ciphers                 EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH:ECDHE-RSA-AES128-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA128:DHE-RSA-AES128-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES128-GCM-SHA128:ECDHE-RSA-AES128-SHA384:ECDHE-RSA-AES128-SHA128:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES128-SHA128:DHE-RSA-AES128-SHA128:DHE-RSA-AES128-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA384:AES128-GCM-SHA128:AES128-SHA128:AES128-SHA128:AES128-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4
@@ -486,7 +486,7 @@ ocspRespMaxAge           86400
 EOF
         chown -R lsadm:lsadm ${VHDIR}/*
     else
-        echoR "Targeted file already exist, skip!"
+        echo "Targeted file already exist, skip!"
     fi
 }
 set_server_conf() {
@@ -503,7 +503,7 @@ set_server_conf() {
             line_insert ":${PORT}$"  ${WEBCF} "${NEWKEY}" 2
         done
     else
-        echoR 'No listener port detected, listener setup skip!'    
+        echo 'No listener port detected, listener setup skip!'    
     fi
     echo "
 virtualhost ${TEMP_DOMAIN} {
@@ -518,7 +518,7 @@ update_vh_conf(){
     sed -i 's|localhost|'${EMAIL}'|g' ${VHDIR}/${MY_DOMAIN}/vhconf.conf
     sed -i 's|'${LSDIR}'/conf/example.key|/etc/letsencrypt/live/'${MY_DOMAIN}'/privkey.pem|g' ${VHDIR}/${MY_DOMAIN}/vhconf.conf
     sed -i 's|'${LSDIR}'/conf/example.crt|/etc/letsencrypt/live/'${MY_DOMAIN}'/fullchain.pem|g' ${VHDIR}/${MY_DOMAIN}/vhconf.conf
-    echoG "\ncertificate has been successfully installed..."  
+    echo "\ncertificate has been successfully installed..."  
 }
 main_set_vh(){
     create_folder ${WWW_PATH}
@@ -527,23 +527,23 @@ main_set_vh(){
         set_vh_conf
         set_server_conf
         restart_lsws
-        echoG "Vhost created success!"
+        echo "Vhost created success!"
     fi    
 }
 verify_domain() {
     curl -Is http://${MY_DOMAIN}/ | grep -i LiteSpeed >/dev/null 2>&1
     if [ ${?} = 0 ]; then
-        echoG "${MY_DOMAIN} check PASS"
+        echo "${MY_DOMAIN} check PASS"
     else
-        echoR "${MY_DOMAIN} inaccessible, skip!"
+        echo "${MY_DOMAIN} inaccessible, skip!"
         DOMAIN_PASS='OFF'
     fi
     if [ ${WWW} = 'TRUE' ]; then
         curl -Is http://${MY_DOMAIN}/ | grep -i LiteSpeed >/dev/null 2>&1
         if [ ${?} = 0 ]; then
-            echoG "${MY_DOMAIN2} check PASS"
+            echo "${MY_DOMAIN2} check PASS"
         else
-            echoR "${MY_DOMAIN2} inaccessible, skip!"
+            echo "${MY_DOMAIN2} inaccessible, skip!"
             DOMAIN_PASS='OFF'
         fi
     fi
@@ -553,7 +553,7 @@ input_email() {
     	while true; do
             printf "%s" "Please enter your E-mail: "
             read EMAIL
-            echoG "The E-mail you entered is: ${EMAIL}"
+            echo "The E-mail you entered is: ${EMAIL}"
             printf "%s" "Please verify it is correct. [y/N]: "
             read TMP_YN
             if [[ "${TMP_YN}" =~ ^(y|Y) ]]; then
@@ -562,7 +562,7 @@ input_email() {
 	    done
     fi
     if [[ ! ${EMAIL} =~ ${CKREG} ]]; then
-    	echoR "\nPlease enter a valid E-mail, skip!\n"
+    	echo "\nPlease enter a valid E-mail, skip!\n"
         EMAIL_SKIP='ON'
     fi	
 }
@@ -575,7 +575,7 @@ apply_lecert() {
     if [ ${?} -eq 0 ]; then
         update_vh_conf
     else
-        echoR "Oops, something went wrong..."
+        echo "Oops, something went wrong..."
         exit 1
     fi
 }
@@ -583,9 +583,9 @@ hook_certbot() {
     sed -i 's/0.*/&  --deploy-hook "\/usr\/local\/lsws\/bin\/lswsctrl restart"/g' ${BOTCRON}
     check_duplicate 'restart' ${BOTCRON}
     if [ ${?} = 0 ]; then
-        echoG 'Certbot hook update success'
+        echo 'Certbot hook update success'
     else
-        echoY 'Please check certbot crond!'
+        echo 'Please check certbot crond!'
     fi
 }
 force_https() {
@@ -608,15 +608,15 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 ### Forcing HTTPS rule end
             ' | cat - ${DOCHM}/.htaccess)" >${DOCHM}/.htaccess
             restart_lsws
-            echoG "Force HTTPS rules added success!" 
+            echo "Force HTTPS rules added success!" 
         else
-            echoR "Force HTTPS rules already existed, skip!"
+            echo "Force HTTPS rules already existed, skip!"
         fi
     fi 
 }
 check_empty(){
     if [ -z "${1}" ]; then
-        echoR "\nPlease input a value! exit!\n"
+        echo "\nPlease input a value! exit!\n"
         exit 1
     fi
 }
@@ -635,7 +635,7 @@ domain_input(){
             echo -e "Please enter your domain: e.g. www.domain.com or sub.domain.com"
             printf "%s" "Your domain: "
             read MY_DOMAIN
-            echoG "The domain you put is: ${MY_DOMAIN}"
+            echo "The domain you put is: ${MY_DOMAIN}"
             printf "%s" "Please verify it is correct. [y/N]: "
             read TMP_YN
             if [[ "${TMP_YN}" =~ ^(y|Y) ]]; then
@@ -646,7 +646,7 @@ domain_input(){
     check_empty ${MY_DOMAIN}
     check_duplicate ${MY_DOMAIN} ${WEBCF}
     if [ ${?} = 0 ]; then
-        echoR "domain existed, skip!"
+        echo "domain existed, skip!"
         DOMAIN_SKIP='ON'
     fi
     check_www_domain ${MY_DOMAIN}
@@ -674,7 +674,7 @@ issue_cert(){
 }
 
 end_msg(){
-    echoG 'Setup finished!'
+    echo 'Setup finished!'
 }    
 
 main() {
@@ -704,7 +704,7 @@ while [ ! -z "${1}" ]; do
         ;;
         -le | -LE | --letsencrypt) shift
             if [ "${1}" = '' ] || [[ ! ${1} =~ ${CKREG} ]]; then
-                echoR "\nPlease enter a valid E-mail, exit!\n"   
+                echo "\nPlease enter a valid E-mail, exit!\n"   
                 exit 1
             else
                 ISSUECERT='ON'
@@ -724,7 +724,7 @@ while [ ! -z "${1}" ]; do
             CLASSICPRESS='ON'
         ;;        
         *)
-            echoR "unknown argument..."
+            echo "unknown argument..."
             show_help 1
         ;;
     esac

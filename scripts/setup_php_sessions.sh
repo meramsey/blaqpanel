@@ -36,6 +36,7 @@ fi
 
 # Create cron file if missing.
 if [[ ! -e /usr/local/blaqpanel/bin/cleansessions ]]; then
+	mkdir -p /usr/local/blaqpanel/bin
 	touch /usr/local/blaqpanel/bin/cleansessions
 	chmod +x /usr/local/blaqpanel/bin/cleansessions
 	cat >> /usr/local/blaqpanel/bin/cleansessions <<"EOL"

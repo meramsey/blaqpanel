@@ -10,7 +10,7 @@ LICENSE_KEY=""
 ADMIN_PASS="1234567"
 LS_DIR='/usr/local/lsws'
 STORE_DIR='/opt/.litespeed_conf'
-CONF_URL='https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/conf/ols2ent'
+CONF_URL='https://raw.githubusercontent.com/meramsey/ls-cloud-image/master/Setup/conf/ols2ent'
 ols_conf_file="$LS_DIR/conf/httpd_config.conf"
 declare -a vhosts
 declare -a domains
@@ -331,7 +331,7 @@ lsws_conf_file() {
         sed -i $'s/Group nobody/Group www-data/' $LS_DIR/conf/httpd.conf
         sed -i $'s/User nobody/User www-data/' $LS_DIR/conf/httpd.conf
     fi
-    wget -O $LS_DIR/conf/httpd_config.xml https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/conf/ols2ent/httpd_config.xml
+    wget -O $LS_DIR/conf/httpd_config.xml https://raw.githubusercontent.com/meramsey/ls-cloud-image/master/Setup/conf/ols2ent/httpd_config.xml
     check_return
     if [[ $pkg_tool == "apt" ]] ; then
         sed -i $'s/<user>nobody<\/user>/<user>www-data<\/user>/' $LS_DIR/conf/httpd_config.xml
@@ -347,7 +347,7 @@ lsws_conf_file() {
 write_apache_conf() {
 
     if [[ ! -f $STORE_DIR/httpd.conf ]] ; then
-        wget -q -O $STORE_DIR/httpd.conf https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/conf/ols2ent/httpd.conf
+        wget -q -O $STORE_DIR/httpd.conf https://raw.githubusercontent.com/meramsey/ls-cloud-image/master/Setup/conf/ols2ent/httpd.conf
         check_return
     fi
 
@@ -357,7 +357,7 @@ write_apache_conf() {
 
     mkdir $STORE_DIR/conf/vhosts/${domains[i]}
 
-    wget -q -O $STORE_DIR/conf/vhosts/${domains[i]}/${domains[i]}.conf https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/conf/ols2ent/example.conf
+    wget -q -O $STORE_DIR/conf/vhosts/${domains[i]}/${domains[i]}.conf https://raw.githubusercontent.com/meramsey/ls-cloud-image/master/Setup/conf/ols2ent/example.conf
     check_return
 
     if [[ ${domains[i]} == "wordpress" ]] ; then

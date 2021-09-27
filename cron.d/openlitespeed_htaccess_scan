@@ -1,0 +1,4 @@
+# https://openlitespeed.org/kb/reload-openlitespeed-automatically-with-directadmin/
+# https://forums.cyberpanel.net/discussion/comment/12498/#Comment_12498
+# Cron to scan every 3 minutes for .htaccess file changes and restart openlitespeed
+*/3 * * * * root if ! find /var/www/*/html/ -maxdepth 2 -type f -newer /usr/local/lsws/admin/cgid -name '.htaccess' -exec false {} +; then systemctl restart lsws; fi

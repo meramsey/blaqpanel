@@ -447,6 +447,7 @@ type                    lsapi
 address                 uds://tmp/lshttpd/${MY_DOMAIN}.sock
 maxConns                35
 env                     PHP_LSAPI_CHILDREN=35
+env                     PHP_INI_SCAN_DIR=:\$VH_ROOT/html
 initTimeout             600
 retryTimeout            0
 persistConn             1
@@ -512,6 +513,9 @@ configFile              ${VHDIR}/${MY_DOMAIN}/vhconf.conf
 allowSymbolLink         1
 enableScript            1
 restrained              1
+setUIDMode              2
+user                    \$VH_USER
+group                   \$VH_USER
 }" >>${WEBCF}
 }
 update_vh_conf(){

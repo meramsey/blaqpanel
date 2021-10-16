@@ -456,8 +456,6 @@ autoStart               1
 path                    ${LSDIR}/${PHPVER}/bin/lsphp
 backlog                 100
 instances               1
-extUser                 ${USER}
-extGroup                ${GROUP}
 runOnStartUp            1
 priority                0
 memSoftLimit            2047M
@@ -481,6 +479,7 @@ enableECDHE             1
 renegProtection         1
 sslSessionCache         1
 enableSpdy              15
+enableQuic              1
 enableStapling           1
 ocspRespMaxAge           86400
 }
@@ -514,8 +513,6 @@ allowSymbolLink         1
 enableScript            1
 restrained              1
 setUIDMode              2
-user                    \$VH_USER
-group                   \$VH_USER
 }" >>${WEBCF}
 }
 update_vh_conf(){

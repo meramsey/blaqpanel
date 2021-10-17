@@ -418,6 +418,7 @@ vhDomain                  \$VH_DOMAIN
 vhAliases                 www.\$VH_DOMAIN
 adminEmails               admin@\$VH_DOMAIN
 enableGzip                1
+enableBr                  1
 
 errorlog \$VH_ROOT/logs/\$VH_NAME.error_log {
 useServer               0
@@ -686,9 +687,9 @@ main() {
     domain_input
     main_set_vh ${MY_DOMAIN}
     issue_cert
-	check_which_cms
+    check_which_cms
     check_install_wp
-	check_install_cp
+    check_install_cp
     force_https
     end_msg
 }

@@ -51,6 +51,10 @@ $use_highlightjs = true;
 // for dark theme use 'ir-black'
 $highlightjs_style = 'ir-black';
 
+// Set light or dark theme
+$theme = 'dark';
+define('FM_THEME', $theme);
+
 // Enable ace.js (https://ace.c9.io/) on view's page
 $edit_files = true;
 
@@ -72,6 +76,7 @@ $root_url = '';
 $http_host = $_SERVER['HTTP_HOST'];
 
 // user specific directories
+// https://github.com/prasathmani/tinyfilemanager/wiki/Security-and-User-Management#user-specific-directories
 // array('Username' => 'Directory path', 'Username2' => 'Directory path', ...)
 $directories_users = array(
   'ADMIN_USERNAME' => $root_path, // restricts user to their own /var/www/domain/html 
@@ -121,8 +126,9 @@ $sticky_navbar = true;
 
 
 // max upload file size
-$max_upload_size_bytes = 5000;
+$max_upload_size_bytes = 50000000;
 
+// https://github.com/prasathmani/tinyfilemanager/wiki/IP-Blacklist-and-Whitelist
 // Possible rules are 'OFF', 'AND' or 'OR'
 // OFF => Don't check connection IP, defaults to OFF
 // AND => Connection must be on the whitelist, and not on the blacklist
@@ -145,4 +151,4 @@ $ip_blacklist = array(
 );
 
 
-//?>
+//?> // commented it out so it doesn't add this to output at top of the file like it would do otherwise

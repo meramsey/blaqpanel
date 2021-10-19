@@ -62,7 +62,7 @@ $default_timezone = 'Etc/UTC'; // UTC
 // use absolute path of directory i.e: '/var/www/folder' or $_SERVER['DOCUMENT_ROOT'].'/folder'
 // $root_path = $_SERVER['DOCUMENT_ROOT'];
 
-$root_path = dirname(__FILE__, 2);
+$root_path = dirname(__FILE__, 2); // Set's this to parent directory /var/www/domain/html instead of /var/www/domain/html/filemanager
 
 // Root url for links in file manager.Relative to $http_host. Variants: '', 'path/to/subfolder'
 // Will not working if $root_path will be outside of server document root
@@ -73,7 +73,9 @@ $http_host = $_SERVER['HTTP_HOST'];
 
 // user specific directories
 // array('Username' => 'Directory path', 'Username2' => 'Directory path', ...)
-$directories_users = array();
+$directories_users = array(
+  'ADMIN_USERNAME' => $root_path, // restricts user to their own /var/www/domain/html 
+);
 
 // input encoding for iconv
 $iconv_input_encoding = 'UTF-8';
@@ -93,11 +95,17 @@ $allowed_upload_extensions = '';
 // Favicon path. This can be either a full url to an .PNG image, or a path based on the document root.
 // full path, e.g http://example.com/favicon.png
 // local path, e.g images/icons/favicon.png
-$favicon_path = '';
+$favicon_path = 'https://raw.githubusercontent.com/meramsey/blaqpanel/main/filemanager/images/favicon.ico';
 
 // Files and folders to excluded from listing
+// https://github.com/prasathmani/tinyfilemanager/wiki/Exclude-Files-&-Folders
 // e.g. array('myfile.html', 'personal-folder', '*.php', ...)
-$exclude_items = array('');
+$exclude_items = array(
+    'phpMyAdmin',
+    'filemanager',
+    'filemanager/index.php',
+    'filemanager/config.php',
+);
 
 // Online office Docs Viewer
 // Availabe rules are 'google', 'microsoft' or false
@@ -136,13 +144,5 @@ $ip_blacklist = array(
     '::'            // non-routable meta ipv6
 );
 
-// Files and folders to excluded from listing
-// e.g. array('myfile.html', 'personal-folder', '*.php', ...)
-$exclude_items = array(
-    'phpMyAdmin',
-    'filemanager',
-    'filemanager/index.php',
-    'filemanager/config.php',
-);
 
 //?>

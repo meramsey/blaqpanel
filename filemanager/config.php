@@ -32,7 +32,10 @@ $auth_users = array(
   //'user' => password_hash('USER_PASSWORD', PASSWORD_DEFAULT),
   // For replacing via scripted setups
   
-  'ADMIN_USERNAME' => 'ADMIN_HASHED_PASSWORD',
+  //'ADMIN_USERNAME' => 'ADMIN_HASHED_PASSWORD',
+  'admin' => 'ADMIN_HASHED_PASSWORD', // This is to test with hashed password for admin username
+  'ADMIN_USERNAME' => password_hash('ADMIN_PASSWORD', PASSWORD_DEFAULT), // this is to test if inserting unhashed same password in as the user works
+  
 
   
   // Insert user and pass above this line.

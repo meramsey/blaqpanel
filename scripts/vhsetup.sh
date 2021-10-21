@@ -482,7 +482,28 @@ procHardLimit           500
 ### Insert context configs below this line
 
 context /logs/ {
+  location                logs/
   allowBrowse             0
+  note                    Deny public access to logs directory
+
+  rewrite  {
+
+  }
+  addDefaultCharset       off
+
+  phpIniOverride  {
+
+  }
+}
+
+context / {
+  allowBrowse             1
+  note                    Default Context Headers
+  extraHeaders            <<<END_extraHeaders
+X-Frame-Options "SAMEORIGIN" always
+X-XSS-Protection "1; mode=block" always;
+  END_extraHeaders
+
 
   rewrite  {
 

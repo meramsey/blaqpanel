@@ -404,6 +404,8 @@ restart_lsws(){
 set_vh_conf() {
     create_folder "${DOCHM}"
     create_folder "${VHDIR}/${MY_DOMAIN}"
+    create_file "${VHDIR}/${MY_DOMAIN}/htpasswd"
+    create_file "${VHDIR}/${MY_DOMAIN}/htgroup"
     if [ ! -f "${DOCHM}/index.php" ]; then
         cat <<'EOF' >${DOCHM}/index.php
 <?php
@@ -420,16 +422,16 @@ adminEmails               admin@\$VH_DOMAIN
 enableGzip                1
 enableBr                  1
 
-errorlog \$VH_ROOT/logs/\$VH_NAME.error_log {
+errorlog \$VH_ROOT/html/logs/\$VH_NAME.error_log {
 useServer               0
 logLevel                ERROR
 rollingSize             10M
 }
 
-accesslog \$VH_ROOT/logs/\$VH_NAME.access_log {
+accesslog \$VH_ROOT/html/logs/\$VH_NAME.access_log {
 useServer               0
 logFormat               "%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i""
-logHeaders              5
+logHeaders              7
 rollingSize             10M
 keepDays                10
 }
@@ -441,6 +443,18 @@ indexFiles              index.php, index.html
 
 scripthandler  {
 add                     lsapi:${PHPVER} php
+}
+
+realm Default {
+  note                    Default password protected realm
+
+  userDB  {
+    location              \$SERVER_ROOT/conf/vhosts/\$VH_NAME/htpasswd
+  }
+
+  groupDB  {
+    location              \$SERVER_ROOT/conf/vhosts/\$VH_NAME/htgroup
+  }
 }
 
 extprocessor ${PHPVER} {
@@ -463,6 +477,21 @@ memSoftLimit            2047M
 memHardLimit            2047M
 procSoftLimit           400
 procHardLimit           500
+}
+
+### Insert context configs below this line
+
+context /logs/ {
+  allowBrowse             0
+
+  rewrite  {
+
+  }
+  addDefaultCharset       off
+
+  phpIniOverride  {
+
+  }
 }
 
 rewrite  {

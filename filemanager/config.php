@@ -51,8 +51,8 @@ $use_highlightjs = true;
 $highlightjs_style = 'ir-black';
 
 // Set light or dark theme
-$theme = 'light';
-define('FM_THEME', $theme);
+//$theme = 'light';
+//define('FM_THEME', $theme);
 
 // Enable ace.js (https://ace.c9.io/) on view's page
 $edit_files = true;
@@ -150,5 +150,5 @@ $ip_blacklist = array(
     '::'            // non-routable meta ipv6
 );
 
-
-//?> // commented it out so it doesn't add this to output at top of the file like it would do otherwise
+// commented it out so it doesn't add this to output at top of the file like it would do otherwise
+//?> 

@@ -51,7 +51,7 @@ $use_highlightjs = true;
 $highlightjs_style = 'ir-black';
 
 // Set light or dark theme
-$theme = 'dark';
+$theme = 'light';
 define('FM_THEME', $theme);
 
 // Enable ace.js (https://ace.c9.io/) on view's page
@@ -100,7 +100,7 @@ $allowed_upload_extensions = '';
 // Favicon path. This can be either a full url to an .PNG image, or a path based on the document root.
 // full path, e.g http://example.com/favicon.png
 // local path, e.g images/icons/favicon.png
-$favicon_path = 'https://raw.githubusercontent.com/meramsey/blaqpanel/main/filemanager/images/favicon.ico';
+$favicon_path = 'https://blaqpanel.com/wp-content/uploads/2021/10/cropped-blaqpanel-favicon-512-300x300.png';
 
 // Files and folders to excluded from listing
 // https://github.com/prasathmani/tinyfilemanager/wiki/Exclude-Files-&-Folders

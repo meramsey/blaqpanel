@@ -1,0 +1,18 @@
+#!/bin/bash
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+# Save to : /etc/systemd/system/callback-restart.service
+
+[Unit]
+Description=Callback Restart notification
+Before=shutdown.target reboot.target halt.target
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/local/bin/callback-start
+ExecStop=/usr/local/bin/callback-shutdown
+
+[Install]
+WantedBy=multi-user.target

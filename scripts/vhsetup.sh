@@ -518,6 +518,7 @@ X-XSS-Protection "1; mode=block" always;
 rewrite  {
 enable                  1
 autoLoadHtaccess        1
+logLevel                0
 }
 
 vhssl  {

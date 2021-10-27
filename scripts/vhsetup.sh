@@ -445,6 +445,11 @@ scripthandler  {
 add                     lsapi:${PHPVER} php
 }
 
+phpIniOverride  {
+php_admin_flag log_errors On
+php_admin_value error_log logs/php_error_log
+}
+
 realm Default {
   note                    Default password protected realm
 

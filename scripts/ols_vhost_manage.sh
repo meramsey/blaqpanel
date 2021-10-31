@@ -371,7 +371,7 @@ type                    lsapi
 address                 uds://tmp/lshttpd/${MY_DOMAIN}.sock
 maxConns                35
 env                     PHP_LSAPI_CHILDREN=35
-env                     PHP_INI_SCAN_DIR=:\$VH_ROOT/html
+env                     PHP_INI_SCAN_DIR=:\$VH_ROOT/${_arg_html}
 initTimeout             600
 retryTimeout            0
 persistConn             1

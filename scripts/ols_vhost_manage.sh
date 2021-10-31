@@ -200,7 +200,7 @@ fi
 # Globals
 MY_DOMAIN="$_arg_domain"
 MY_DOMAIN2=''
-WWW_PATH="$_arg_html"
+WWW_PATH="$_arg_www"
 BOTCRON='/etc/cron.d/certbot'
 LSDIR='/usr/local/lsws'
 WEBCF="${LSDIR}/conf/httpd_config.conf"

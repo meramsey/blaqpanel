@@ -2,11 +2,12 @@
 ## Author: Michael Ramsey
 ## Objective: Manage (Create|Remove) vhosts configs and insert them into main config.
 ## https://github.com/meramsey/blaqpanel/
+## Parts are Based off : https://github.com/litespeedtech/ls-cloud-image/blob/master/Setup/vhsetup.sh
 ## How to use.
-# ./ols_vhost_manage.sh domain
-#./ols_vhost_manage.sh example.com --add
+# ./ols_vhost_manage.sh domain action <optional args>
+#./ols_vhost_manage.sh example.com add --phpver lsphp80
 #
-## link='https://raw.githubusercontent.com/meramsey/blaqpanel/main/scripts/ols_vhost_manage.sh'; bash <(curl -s ${link} || wget -qO - ${link}) example.com --add
+## link='https://raw.githubusercontent.com/meramsey/blaqpanel/main/scripts/ols_vhost_manage.sh'; bash <(curl -s ${link} || wget -qO - ${link}) example.com add --phpver lsphp80
 ##
 ## To update options just add new argbash options and rerun `argbash -o ols_vhost_manage.sh ols_vhost_manage.sh` to update the script in place with new arguments.
 

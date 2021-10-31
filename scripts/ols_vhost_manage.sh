@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ## Author: Michael Ramsey
 ## Objective: Manage (Create|Remove) vhosts configs and insert them into main config.
-## https://github.com/whattheserver/zimbra-automated-installation
+## https://github.com/meramsey/blaqpanel/
 ## How to use.
 # ./ols_vhost_manage.sh domain
 #./ols_vhost_manage.sh example.com --add

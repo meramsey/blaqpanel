@@ -188,10 +188,10 @@ assign_positional_args 1 "${_positionals[@]}"
 
 # vvv  PLACE YOUR CODE HERE  vvv
 # For example:
-printf "Value of '%s': %s\\n" 'domain' "$_arg_domain"
-printf "Value of '%s': %s\\n" 'action' "$_arg_action"
-printf "Value of '%s': %s\\n" 'phpver' "$_arg_phpver"
-printf "Value of '%s': %s\\n" 'ssl' "$_arg_ssl"
+# printf "Value of '%s': %s\\n" 'domain' "$_arg_domain"
+# printf "Value of '%s': %s\\n" 'action' "$_arg_action"
+# printf "Value of '%s': %s\\n" 'phpver' "$_arg_phpver"
+# printf "Value of '%s': %s\\n" 'ssl' "$_arg_ssl"
 
 if [ "${_arg_debug}" == 'on' ] || [ "${DEBUG}" == 'true' ] || [ "${DEBUG}" == 1 ]; then
       export PS4='+ ${BASH_SOURCE##*/}:${LINENO} '

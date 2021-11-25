@@ -152,6 +152,7 @@ $ip_blacklist = array(
 
 // Show or hide files and folders that starts with a dot
 $show_hidden = true;
+define('FM_SHOW_HIDDEN', $show_hidden);
 
 // Show directory size: true or speedup output: false
 $calc_folder = true;

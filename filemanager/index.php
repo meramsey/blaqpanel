@@ -333,7 +333,7 @@ if ($use_auth) {
                         </div>
                         <div class="footer text-center">
                             &mdash;&mdash; &copy;
-                            <a href="https://tinyfilemanager.github.io/" target="_blank" class="text-muted" data-version="<?php echo VERSION; ?>">CCP Programmers</a> &mdash;&mdash;
+                            <a href="https://blaqpanel.com/" target="_blank" class="text-muted" data-version="<?php echo VERSION; ?>">Blaqpanel</a> &mdash;&mdash;
                         </div>
                     </div>
                 </div>

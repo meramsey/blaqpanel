@@ -100,7 +100,7 @@ $allowed_upload_extensions = '';
 // Favicon path. This can be either a full url to an .PNG image, or a path based on the document root.
 // full path, e.g http://example.com/favicon.png
 // local path, e.g images/icons/favicon.png
-$favicon_path = 'https://blaqpanel.com/wp-content/uploads/2021/10/cropped-blaqpanel-favicon-512-300x300.png';
+$favicon_path = 'https://blaqpanel.com/wp-content/uploads/2021/10/blaqpanel-favicon-512-e1635071502723.png';
 
 // Files and folders to excluded from listing
 // https://github.com/prasathmani/tinyfilemanager/wiki/Exclude-Files-&-Folders

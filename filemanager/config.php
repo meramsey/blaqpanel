@@ -150,5 +150,12 @@ $ip_blacklist = array(
     '::'            // non-routable meta ipv6
 );
 
+// Show or hide files and folders that starts with a dot
+$show_hidden = true;
+
+// Show directory size: true or speedup output: false
+$calc_folder = true;
+
+
 // commented it out so it doesn't add this to output at top of the file like it would do otherwise
 //?> 

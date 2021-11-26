@@ -505,8 +505,11 @@ context / {
   allowBrowse             1
   note                    Default Context Headers
   extraHeaders            <<<END_extraHeaders
-X-Frame-Options "SAMEORIGIN" always
-X-XSS-Protection "1; mode=block" always;
+# Headers go below this line
+Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:;" always;
+Referrer-Policy no-referrer, strict-origin-when-cross-origin;
+Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()";
+# Headers go above this line
   END_extraHeaders
 
 

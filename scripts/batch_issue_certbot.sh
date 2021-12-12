@@ -27,7 +27,7 @@ for dir in $(ls -d /var/www/*/html); do
 	domain=$(echo $dir|sed -e 's|/var/www/||g' -e 's|/html||g');
 	DOCHM="/var/www/$domain/html"
 	echo "Requesting SSL for Domain: $domain and www.$domain path: /var/www/$domain/html/";
-	certbot certonly --non-interactive --agree-tos -m admin@${domain} --webroot -w ${DOCHM} -d ${domain} -d www.${domain}||certbot certonly --non-interactive --agree-tos -m admin@${domain} --webroot -w ${DOCHM} -d ${domain}
+	certbot certonly --non-interactive --agree-tos --register-unsafely-without-email --webroot -w ${DOCHM} -d ${domain} -d www.${domain}||certbot certonly --non-interactive --agree-tos --register-unsafely-without-email --webroot -w ${DOCHM} -d ${domain}
 	sed -i "s|\$VH_NAME|$domain|g" ${VHDIR}/${domain}/vhconf.conf
 	echo
 	echo "SSL for Domain: $domain has been requested"

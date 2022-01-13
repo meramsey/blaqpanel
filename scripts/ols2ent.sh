@@ -18,7 +18,7 @@ EPACE='        '
 start_mark='{'
 end_mark='}'
 
-echow(){
+echoW(){
     FLAG=${1}
     shift
     echo -e "\033[1m${EPACE}${FLAG}\033[0m${@}"
@@ -68,11 +68,11 @@ show_help() {
     echo -e "\n4. Uninstall OpenLiteSpeed"
     echo -e "\n5. Install LiteSpeed Enterprise and configure it to use Apache configuration file from step 3"
     echo -e "\nNote: In case LiteSpeed Enterprise installation failed , please run script with \e[31m--restore\e[39m to restore OpenLiteSpeed\n"
-    echow '-L, --lsws'
+    echoW '-L, --lsws'
     echo "${EPACE}${EPACE} Install and switch from OLS to LSWS. "
-    echow '-R, --restore'
+    echoW '-R, --restore'
     echo "${EPACE}${EPACE} Restore to OpenLiteSpeed. "    
-    echow '-H, --help'
+    echoW '-H, --help'
     echo "${EPACE}${EPACE}Display help and exit."
     exit 0
 }

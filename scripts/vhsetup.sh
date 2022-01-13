@@ -45,7 +45,7 @@ echoY() {
 echoB() {
     echo -e "\033[1;4;94m${1}\033[0m"
 }
-echow(){
+echoW(){
     FLAG=${1}
     shift
     echo -e "\033[1m${EPACE}${FLAG}\033[0m${@}"
@@ -55,20 +55,20 @@ show_help() {
     case ${1} in
     "1")
         echo -e "\033[1mOPTIONS\033[0m"
-        echow "-D, --domain [DOMAIN_NAME]"
+        echoW "-D, --domain [DOMAIN_NAME]"
         echo "${EPACE}${EPACE}If you wish to add www domain , please attach domain with www"
-        echow "-LE, --letsencrypt [EMAIL]"
+        echoW "-LE, --letsencrypt [EMAIL]"
         echo "${EPACE}${EPACE}Issue let's ecnrypt certificate, must follow with E-mail address."
-        echow "-F, --force-https"
+        echoW "-F, --force-https"
         echo "${EPACE}${EPACE}This will add a force HTTPS rule in htaccess file"
-        echow "-W, --wordpress"
+        echoW "-W, --wordpress"
         echo "${EPACE}${EPACE}This will install a Wordpress with LiteSpeed Cache plugin."
         echo "${EPACE}${EPACE}Example: ./vhsetup.sh -d www.example.com -le admin@example.com -f -w"
         echo "${EPACE}${EPACE}Above example will create a virtual host with www.example.com and example.com domain"
         echo "${EPACE}${EPACE}Issue and install Let's encrypt certificate and Wordpress with LiteSpeed Cache plugin."
-        echow "-C, --classicpress"
+        echoW "-C, --classicpress"
         echo "${EPACE}${EPACE}This will install a ClassicPress with LiteSpeed Cache plugin."   
-        echow '-H, --help'
+        echoW '-H, --help'
         echo "${EPACE}${EPACE}Display help and exit."
         exit 0
     ;;    

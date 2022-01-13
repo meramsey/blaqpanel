@@ -3,7 +3,8 @@
 // ${LS_DIR}/admin/misc/converter.php
 // place in /usr/local/lsws/admin/misc/converter.php
 // wget -O /usr/local/lsws/admin/misc/converter.php
-$lsws = dirname(dirname(__DIR__)) . '/';
+// $lsws = dirname(dirname(__DIR__)) . '/';
+$lsws = '/usr/local/lsws/';
 ini_set(
 	'include_path',
 	$lsws . 'admin/html/lib/:' .

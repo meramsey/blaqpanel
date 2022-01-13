@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # /********************************************************************
 # LiteSpeed domain setup Script
 # @Author:   LiteSpeed Technologies, Inc. (https://www.litespeedtech.com)

@@ -2,10 +2,10 @@
 # Reset OLS/CSF WEB UI admin passes all
 ## How to use:
 ## Directly from github as root user:
-# link="https://raw.githubusercontent.com/meramsey/blaqpanel/main/scripts/csf_ols_reset.sh.sh";sh <(curl $link || wget -O - $link);
+# link="https://raw.githubusercontent.com/meramsey/blaqpanel/main/scripts/csf_ols_reset.sh";sh <(curl $link || wget -O - $link);
 
 ## Manually download
-# wget -q -O /usr/local/blaqpanel/bin/csf_ols_reset.sh https://raw.githubusercontent.com/meramsey/blaqpanel/main/scripts/csf_ols_reset.sh.sh && chmod +x /usr/local/blaqpanel/bin/csf_ols_reset.sh; 
+# wget -q -O /usr/local/blaqpanel/bin/csf_ols_reset.sh https://raw.githubusercontent.com/meramsey/blaqpanel/main/scripts/csf_ols_reset.sh && chmod +x /usr/local/blaqpanel/bin/csf_ols_reset.sh; 
 ## Then execute:
 # /usr/local/blaqpanel/bin/csf_ols_reset.sh
 

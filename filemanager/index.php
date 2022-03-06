@@ -299,7 +299,7 @@ if ($use_auth) {
                     <div class="card-wrapper">
                         <div class="card fat <?php echo fm_get_theme(); ?>">
                             <div class="card-body">
-                                <form class="form-signin" action="" method="post" autocomplete="off">
+                                <form id="login-form" class="form-signin" action="" method="post" autocomplete="off">
                                     <div class="form-group">
                                        <div class="brand" style="width: 100% !important;">
                             <img src="https://blaqpanel.com/wp-content/uploads/2021/11/bp-logo-fb-open.png" alt="BlaqPanel">

@@ -324,7 +324,7 @@ if ($use_auth) {
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-block mt-4" role="button">
+                                        <button type="submit" id="fm_button" class="btn btn-success btn-block mt-4" role="button">
                                             <?php echo lng('Login'); ?>
                                         </button>
                                     </div>

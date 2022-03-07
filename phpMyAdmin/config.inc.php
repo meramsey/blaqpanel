@@ -180,7 +180,9 @@ $cfg['SaveDir'] = '';
  * You can find more configuration options in the documentation
  * in the doc/ folder or at <https://docs.phpmyadmin.net/>.
  */
-//$cfg['TempDir'] = '/tmp';
+
+// This temp is actually > /var/www/domain/html/phpMyAdmin/tmp
+$cfg['TempDir'] = dirname(__FILE__) . '/tmp';
 
 // This should be changed before use......
 //$cfg['blowfish_secret'] = 'fnD21z12ylJ4edZn31Hm9ci1Diln3tUL';

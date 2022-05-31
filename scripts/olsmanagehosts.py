@@ -41,7 +41,8 @@ with requests.Session() as session:
     soup = BeautifulSoup(session_text, 'html.parser')
     soup_inputs = soup.find_all('input', value=True)
     # print(soup_inputs[-1]['value'])
-    # we need to make it uri encoded `0.22532200+1635712299`
+    """<input type="hidden" name="tk" value="0.51027600 1653948749"></form>"""
+    # we need to make it uri encoded `0.51027600+1653948749`
     token = str(soup_inputs[-1]['value']).replace(' ', '+')
     # print(token)
 

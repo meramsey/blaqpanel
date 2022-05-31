@@ -9,9 +9,6 @@
 ## Then execute:
 # /usr/local/blaqpanel/bin/csf_ols_reset.sh
 
-
-
-#!/bin/bash
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 
    exit 1
